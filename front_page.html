@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #000;
+            color: #f0f0f0;
+            text-align: center;
+            padding: 20px 0;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .site-title {
+            margin: 0;
+        }
+
+        nav {
+            text-align: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        .container {
+            width: 500px;
+            margin: 0 auto;
+            padding: 250px;
+        }
+
+        section {
+            margin: 10px;
+            padding: 50px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+        }
+        h1, nav a {
+            color: white;
+        }
+        .start_button{
+            border: none;
+            outline: none;
+            height: 30px;
+            font-size: 18px;
+            border-radius: 20px;
+            width: 200px;  
+            background-color: #000;
+            color: white;
+        }
+        .start_button:hover{
+            cursor: pointer;
+        }
+        .start_button:active{
+            background-color: grey;
+        }
+        .plus{
+            font-size: 50px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1 class="site-title"><strong class="plus">+</strong> Docconnect</h1>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="doc_regist.html">Registration (Doctor)</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="container">
+        <section>
+            <h2>Find your Doctor&#129658;</h2>
+            <p>Find a Doctor on your need and location.</p>
+            <button class="start_button" id="openNewFormButton">Let's get started</button>
+            <script>
+                document.getElementById("openNewFormButton").addEventListener("click", function() {
+                    window.location.href = "user.html";
+                });
+            </script>
+        </section>
+    </div>    
+</body>
+</html>

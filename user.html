@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Let's get started</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+            background-size: cover;
+            background-position: center;
+            font-family: sans-serif;
+        }
+
+        .loginbox {
+            width: 420px;
+            height: 260px;
+            background: #000;
+            color: #fff;
+            top: 50%;
+            left: 50%;
+            position: absolute;
+            transform: translate(-50%, -50%);
+            box-sizing: border-box;
+            padding: 30px;
+        }
+
+        h1 {
+            margin: 0;
+            padding-top: 0;
+            font-size: 25px;
+            padding-bottom: 10px;
+        }
+
+        .loginbox p {
+            margin: 0;
+            padding: 0;
+            font-weight: bolder;
+        }
+
+        .loginbox input {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .loginbox input[type="submit"] {
+            border: none;
+            outline: none;
+            height: 30px;
+            font-size: 18px;
+            border-radius: 20px;
+        }
+
+        .loginbox input[type="submit"]:hover {
+            cursor: pointer;
+        }
+
+        .loginbox input[type="submit"]:active {
+            background-color: gray;
+        }
+
+        .doc-input {
+            width: 100px;
+            height: 160px;
+            padding-bottom: 30px;
+        }
+
+        header {
+            background-color: #000;
+            color: #f0f0f0;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .back {
+            color: #fff;
+        }
+    </style>
+    <header>
+        <a href="front_page.html" class="back">Home</a>
+    </header>
+</head>
+<body>
+    <div class="loginbox">
+        <h1>Let's get started!</h1>
+        <form>
+            <p>Which kind of doctor you want to consult:</p>
+            <input type="text" id="patientSpecialization" placeholder="Specialization" required>
+            <p>Landmark:</p>
+            <input type="text" id="patientLandmark" placeholder="Ex: Madhapur" required>
+            <input class="reg-button" type="submit" id="submit" value="Search">
+        </form>
+    </div>
+</body>
+</html>

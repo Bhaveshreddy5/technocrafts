@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Find a Doctor</title>
+</head>
+<body>
+    <h1>Find a Doctor</h1>
+    <form id="searchForm">
+        <label for="patientSpecialization">Specialization:</label>
+        <input type="text" name="patientSpecialization" id="patientSpecialization" required>
+        <br>
+        <label for="patientLandmark">Landmark:</label>
+        <input type="text" name="patientLandmark" id="patientLandmark" required>
+        <br>
+        <input type="submit" value="Search">
+    </form>
+
+    <div id="results">
+        <h2>Matching Doctors</h2>
+        <ul id="doctorsList"></ul>
+    </div>
+
+    <script>
+        const firebaseConfig = {
+            "apiKey": "AIzaSyC32E22s12jt0GGwhBqQ65-5CGUMCUthUI",
+            "authDomain": "medtech-896ec.firebaseapp.com",
+            "databaseURL": "https://medtech-896ec-default-rtdb.firebaseio.com",
+            "storageBucket": "medtech-896ec.appspot.com",
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+
+        const searchForm = document.getElementById("searchForm");
+        const doctorsList = document.getElementById("doctorsList");
+        const results = document.getElementById("results");
+
+        searchForm.addEventListener("submit", async (event) => {
+            event.preventDefault();
+
+            const patientSpecialization = document.getElementById("patientSpecialization").value;
+            const patientLandmark = document.getElementById("patientLandmark").value;
+
+            // Query the Firebase database to find matching doctors
+            const snapshot = await db.ref("Doctors").orderByChild("specialization").equalTo(patientSpecialization).once("value");
+
+            const matchingDoctors = [];
+            snapshot.forEach((doctorSnapshot) => {
+                const doctorData = doctorSnapshot.val();
+                if (doctorData.location === patientLandmark) {
+                    matchingDoctors.push(doctorData);
+                }
+            });
+
+            // Display the matching doctors in the HTML
+            renderDoctors(matchingDoctors);
+        });
+
+        function renderDoctors(doctors) {
+            if (doctors.length === 0) {
+                results.innerHTML = "<p>No matching doctors found.</p>";
+                return;
+            }
+
+            const doctorListItems = doctors.map((doctor) => {
+                return `
+                    <li>
+                        <strong>Name:</strong> ${doctor.name}<br>
+                        <strong>Specialization:</strong> ${doctor.specialization}<br>
+                        <strong>Location:</strong> ${doctor.location}<br>
+                        <strong>Availability:</strong> ${doctor.availability}<br>
+                    </li>
+                `;
+            });
+
+            doctorsList.innerHTML = doctorListItems.join("");
+            results.style.display = "block";
+        }
+    </script>
+</body>
+</html>
